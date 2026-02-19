@@ -1,0 +1,12 @@
+Internal Policy for Nimbus in eu-central maintained by Data Engineering.
+Internal reference: POLICY-00815.
+Owner: eve@example.internal.
+Created on: 2025-03-26.
+Last updated: 2025-04-29.
+Tags: security, governance, compliance.
+
+The data retention policy describes how long different categories of information are stored. Operational logs are kept for troubleshooting and audit purposes, while personally identifiable information is retained only for as long as necessary to provide the service.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.

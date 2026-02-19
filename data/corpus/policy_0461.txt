@@ -1,0 +1,12 @@
+Internal Policy for Orion in us-east maintained by Site Reliability.
+Internal reference: POLICY-00461.
+Owner: alice@example.internal.
+Created on: 2024-04-06.
+Last updated: 2024-05-19.
+Tags: governance, security, compliance.
+
+The data retention policy describes how long different categories of information are stored. Operational logs are kept for troubleshooting and audit purposes, while personally identifiable information is retained only for as long as necessary to provide the service.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.

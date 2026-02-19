@@ -1,0 +1,12 @@
+Design Note for Nova in eu-central maintained by Core Platform.
+Internal reference: DESIGN-00166.
+Owner: dave@example.internal.
+Created on: 2023-06-16.
+Last updated: 2023-06-23.
+Tags: engineering, technical-design, architecture.
+
+The data model is designed to support gradual evolution. Schemas use additive changes where possible, and deprecations are communicated before fields are removed. Migrations are tested in staging before production.
+
+Each service publishes metrics for latency, error rate, and throughput. Dashboards aggregate these metrics to provide a high-level view, while detailed panels help engineers drill into specific components.
+
+The system is organized into several services connected through a message bus. Each service owns its own data storage and exposes a clear API. Requests from the user interface flow through an edge gateway, which handles authentication, rate limiting, and routing to backend services.

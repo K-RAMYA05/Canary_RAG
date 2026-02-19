@@ -1,0 +1,16 @@
+Incident Document for Nova in us-west maintained by Support Operations.
+Internal reference: INCIDENT-00348.
+Owner: bob@example.internal.
+Created on: 2023-12-15.
+Last updated: 2024-01-02.
+Tags: incident, reliability, postmortem.
+Severity: low.
+Impacted area: authentication service.
+Duration (minutes): 181.
+Status: mitigated.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.

@@ -1,0 +1,16 @@
+Release Changelog for Atlas in ap-south maintained by Security Engineering.
+Internal reference: CHANGELOG-01141.
+Owner: bob@example.internal.
+Created on: 2026-02-15.
+Last updated: 2026-03-04.
+Tags: release, deployment, versioning.
+Severity: critical.
+Impacted area: background jobs.
+Duration (minutes): 69.
+Status: mitigated.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.

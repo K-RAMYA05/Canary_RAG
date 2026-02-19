@@ -1,0 +1,15 @@
+Support FAQ for Nimbus in us-west maintained by Security Engineering.
+Internal reference: FAQ-00932.
+Owner: alice@example.internal.
+Created on: 2025-07-21.
+Last updated: 2025-09-04.
+Tags: how-to, support, user-facing.
+
+Q: Where can I find system status information?
+A: Check the internal status page, which displays the health of major services, recent incidents, and any ongoing maintenance windows.
+
+Q: How can I request access to a new workspace?
+A: Submit an access request through the internal portal, including the business justification and project name. Your manager will receive an approval task, and access will be granted automatically once it is approved.
+
+Q: What should I do if I see a 500 error?
+A: First, refresh the page to ensure it was not a transient issue. If the problem persists, capture the time, URL, and any steps to reproduce. Open an incident ticket with this information so the on-call engineer can investigate logs and metrics.

@@ -1,0 +1,12 @@
+How-to Guide for Orion in us-west maintained by Data Engineering.
+Internal reference: GUIDE-00537.
+Owner: dave@example.internal.
+Created on: 2024-06-21.
+Last updated: 2024-07-10.
+Tags: internal-doc, onboarding, runbook.
+
+When debugging a production issue, begin by checking alerts, logs, and dashboards. Reproduce the issue in a lower environment when possible, and communicate status updates in the incident channel.
+
+This guide walks through deploying the application to the staging environment. Start by creating a release branch, running the full test suite, and confirming that any database migrations have been reviewed. Once tests pass, use the deployment tool to promote the artifact and monitor health checks.
+
+Use feature flags to safely roll out changes. Start with a small percentage of internal users, monitor metrics and logs, and gradually increase exposure as confidence grows. Document rollback procedures in the deployment checklist.

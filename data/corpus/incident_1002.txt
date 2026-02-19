@@ -1,0 +1,16 @@
+Incident Document for Atlas in us-west maintained by Data Engineering.
+Internal reference: INCIDENT-01002.
+Owner: dave@example.internal.
+Created on: 2025-09-29.
+Last updated: 2025-10-31.
+Tags: incident, postmortem, reliability.
+Severity: low.
+Impacted area: reporting pipeline.
+Duration (minutes): 88.
+Status: resolved.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.

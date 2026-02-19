@@ -1,0 +1,16 @@
+Release Changelog for Nimbus in us-east maintained by Support Operations.
+Internal reference: CHANGELOG-00889.
+Owner: alice@example.internal.
+Created on: 2025-06-08.
+Last updated: 2025-06-18.
+Tags: release, versioning, deployment.
+Severity: low.
+Impacted area: dashboard rendering.
+Duration (minutes): 136.
+Status: mitigated.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.

@@ -1,0 +1,16 @@
+Incident Document for Nimbus in ap-south maintained by Site Reliability.
+Internal reference: INCIDENT-00018.
+Owner: dave@example.internal.
+Created on: 2023-01-19.
+Last updated: 2023-02-24.
+Tags: reliability, postmortem, incident.
+Severity: critical.
+Impacted area: background jobs.
+Duration (minutes): 152.
+Status: resolved.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.

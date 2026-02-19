@@ -1,0 +1,16 @@
+Release Changelog for Nimbus in eu-central maintained by Core Platform.
+Internal reference: CHANGELOG-00025.
+Owner: carol@example.internal.
+Created on: 2023-01-26.
+Last updated: 2023-03-09.
+Tags: deployment, versioning, release.
+Severity: low.
+Impacted area: reporting pipeline.
+Duration (minutes): 206.
+Status: mitigated.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.

@@ -1,0 +1,12 @@
+Design Note for Atlas in ap-south maintained by Support Operations.
+Internal reference: DESIGN-00328.
+Owner: eve@example.internal.
+Created on: 2023-11-25.
+Last updated: 2023-12-26.
+Tags: engineering, technical-design, architecture.
+
+Each service publishes metrics for latency, error rate, and throughput. Dashboards aggregate these metrics to provide a high-level view, while detailed panels help engineers drill into specific components.
+
+The data model is designed to support gradual evolution. Schemas use additive changes where possible, and deprecations are communicated before fields are removed. Migrations are tested in staging before production.
+
+Caching is introduced at multiple layers to reduce latency. The client caches stable configuration data, while the edge gateway caches frequently requested resources with short time-to-live values. Backend services maintain their own caches for expensive computations.

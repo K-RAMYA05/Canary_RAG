@@ -1,0 +1,12 @@
+How-to Guide for Helios in us-east maintained by Site Reliability.
+Internal reference: GUIDE-00075.
+Owner: bob@example.internal.
+Created on: 2023-03-17.
+Last updated: 2023-04-12.
+Tags: runbook, internal-doc, onboarding.
+
+To onboard a new engineer, make sure they have access to version control, continuous integration dashboards, and the documentation portal. Provide an overview of the architecture and a simple starter task that exercises the main workflows without touching production systems.
+
+Use feature flags to safely roll out changes. Start with a small percentage of internal users, monitor metrics and logs, and gradually increase exposure as confidence grows. Document rollback procedures in the deployment checklist.
+
+When debugging a production issue, begin by checking alerts, logs, and dashboards. Reproduce the issue in a lower environment when possible, and communicate status updates in the incident channel.

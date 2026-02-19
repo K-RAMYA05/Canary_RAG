@@ -1,0 +1,16 @@
+Incident Document for Atlas in us-west maintained by Data Engineering.
+Internal reference: INCIDENT-00942.
+Owner: alice@example.internal.
+Created on: 2025-07-31.
+Last updated: 2025-08-01.
+Tags: incident, postmortem, reliability.
+Severity: high.
+Impacted area: background jobs.
+Duration (minutes): 232.
+Status: detected.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.

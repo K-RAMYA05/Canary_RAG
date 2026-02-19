@@ -1,0 +1,12 @@
+Internal Policy for Helios in us-west maintained by Site Reliability.
+Internal reference: POLICY-01163.
+Owner: alice@example.internal.
+Created on: 2026-03-09.
+Last updated: 2026-03-26.
+Tags: compliance, governance, security.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.

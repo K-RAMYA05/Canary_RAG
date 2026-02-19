@@ -1,0 +1,18 @@
+Incident Document for Helios in us-east maintained by Data Engineering.
+Internal reference: INCIDENT-01086.
+Owner: eve@example.internal.
+Created on: 2025-12-22.
+Last updated: 2026-01-27.
+Tags: incident, postmortem, reliability.
+Severity: critical.
+Impacted area: background jobs.
+Duration (minutes): 90.
+Status: detected.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
