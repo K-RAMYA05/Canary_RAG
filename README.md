@@ -216,3 +216,281 @@ Expected behavior for a reasonably benign corpus:
 - **Sanity checks**
   - [x] Script to validate canary behavior under benign queries (`sanity_check.py`)
   - [x] CLI tooling to inspect retrieved chunks and canary participation (`query_rag.py`)
+
+
+
+# CanaryRAG – Detection + Attribution (Person 2)
+
+This repository implements **Person 2’s scope** from the project description:
+
+* Retrieval logging for all queries
+* Rule-based detection using canary signals
+* Attribution logic (benign vs probing)
+* Lightweight LLM gatekeeper for decision refinement
+* False-positive reduction through semantic validation
+
+
+
+# Overview
+
+The detection layer sits **on top of the baseline RAG system** and converts retrieval signals into **security decisions**.
+
+Pipeline:
+
+```
+Query → Retrieval → Logging → Rule-based Detection → LLM Gatekeeper → Final Decision
+```
+
+
+# Core Components
+
+### Retrieval Logging
+
+All queries are logged in structured JSONL format with:
+
+* query_id
+* timestamp
+* query_text
+* top_k
+* retrieved chunks:
+
+  * rank
+  * score
+  * doc_id
+  * chunk_id
+  * is_canary
+  * canary_type
+
+Derived signals:
+
+* canary_count
+* top1_is_canary
+* best_canary_rank
+* repetition_count
+* marker_hits
+
+Purpose:
+
+* provide traceability
+* enable downstream detection and analysis
+
+
+
+### Rule-Based Detection
+
+A lightweight detection system using retrieval signals.
+
+Key rules:
+
+* **Canary presence in query**
+
+  ```
+  marker_hits > 0 → probing
+  ```
+
+* **Canary presence in retrieval**
+
+  ```
+  canary_count > 0 → suspicious
+  ```
+
+* **Rank-based signals**
+
+  * canary in top-1
+  * canary in top-k
+
+* **Repetition signal**
+
+  * repeated tokens in query
+
+Purpose:
+
+* fast first-stage detection
+* interpretable decisions
+
+
+
+### Attribution Logic
+
+Each query is classified as:
+
+* **benign**
+* **probing**
+
+Examples:
+
+| Query                         | Label   |
+| ----------------------------- | ------- |
+| "How do I reset my password?" | benign  |
+| "ALPHA-CANARY-KEYWORD-123"    | probing |
+| "OMEGA-CANARY-SEMANTIC-987"   | probing |
+
+
+
+### LLM Gatekeeper (Lightweight)
+
+A second-stage validator applied only to flagged queries.
+
+Input:
+
+* query
+* rule-based decision
+* top retrieved chunks
+
+Output:
+
+```json
+{
+  "final_label": "benign | probing",
+  "confidence": 0.0-1.0,
+  "reason": "...",
+  "should_escalate": true | false
+}
+```
+
+Purpose:
+
+* refine rule-based decisions
+* incorporate semantic understanding
+* reduce false positives
+
+
+
+### False Positive Reduction
+
+Handled by the gatekeeper.
+
+Example:
+
+```
+Query: "Explain ALPHA-CANARY-KEYWORD-123 usage"
+
+Rule-based → probing
+LLM → benign
+```
+
+This allows:
+
+* educational queries → benign
+* direct probing → probing
+
+
+# Scripts
+
+### scripts/query_with_retrieval_log.py
+
+* Runs query
+* Logs retrieval results
+* Generates signals
+
+### scripts/llm_gatekeeper.py
+
+* Applies rule-based detection
+* Calls LLM for flagged queries
+* Produces final decision
+
+
+
+# Step-by-Step Usage
+
+## Step 1 – Run a Query with Logging
+
+```bash
+export PYTHONHASHSEED=0
+python scripts/query_with_retrieval_log.py "How do I reset my password?"
+```
+
+---
+
+## Step 2 – Run Detection + Gatekeeper
+
+```bash
+python scripts/llm_gatekeeper.py --latest
+```
+
+
+# Example Outputs
+
+## Benign Query
+
+```json
+{
+  "query_text": "How do I reset my password?",
+  "final_label": "benign",
+  "confidence": 0.97
+}
+```
+
+
+## Strong Probing
+
+```json
+{
+  "query_text": "ALPHA-CANARY-KEYWORD-123",
+  "final_label": "probing",
+  "confidence": 0.99
+}
+```
+
+
+
+## False Positive Reduced
+
+```json
+{
+  "query_text": "Explain ALPHA-CANARY-KEYWORD-123 usage",
+  "final_label": "benign",
+  "confidence": 0.95
+}
+```
+
+
+
+# Design Choices
+
+### Two-Stage Detection
+
+* Stage 1: Rule-based (fast, deterministic)
+* Stage 2: LLM gatekeeper (semantic reasoning)
+
+---
+
+### Canary Signals
+
+* keyword canary → strong signal
+* semantic canary → weak, subtle signal
+
+
+
+### Lightweight Models
+
+* small LLM used for gatekeeper
+* avoids heavy compute requirements
+
+
+
+# What Is Implemented (Person 2 Scope)
+
+### Detection Pipeline
+
+* End-to-end flow from query to decision
+* Logging → rules → LLM → final output
+
+### Attribution Logic
+
+* benign vs probing classification
+* confidence scoring
+* explanation generation
+
+### LLM Gatekeeper
+
+* applied only to flagged queries
+* reduces false positives
+* structured JSON output
+
+### Signal-Based Detection
+
+* canary presence
+* rank thresholds
+* repetition detection
+

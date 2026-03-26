@@ -23,6 +23,7 @@ class EmbeddingModel:
         return self._dim
 
     def embed(self, texts: Iterable[str]) -> np.ndarray:
+        import re
         """
         Very simple bag-of-words hashing embedding:
 

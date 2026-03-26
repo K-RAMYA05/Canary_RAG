@@ -19,7 +19,7 @@ class VectorStoreConfig:
 class LLMConfig:
     # A slightly larger causal LM than distilgpt2 to reduce repetition.
     # You can change this to any HF causal text model string.
-    model_name: str = "gpt2"
+    model_name: str = "microsoft/Phi-3.5-mini-instruct"
     max_new_tokens: int = 256
     temperature: float = 0.7
 
