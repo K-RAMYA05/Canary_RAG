@@ -45,7 +45,11 @@ class RAGPipeline:
     config: RAGConfig
 
     def __post_init__(self) -> None:
-        self._embedder = EmbeddingModel(self.config.embedding.model_name)
+        self._embedder = EmbeddingModel(
+            self.config.embedding.model_name,
+            keyword_token=self.config.canary.keyword_token,
+            semantic_token=self.config.canary.semantic_token,
+        )
         dim = self.config.vector_store.dim or self._embedder.dim
         self._store = FAISSVectorStore(
             dim=dim,

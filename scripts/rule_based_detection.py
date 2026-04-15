@@ -7,6 +7,7 @@ from typing import Any
 
 
 TOP_CANARY_RANK_THRESHOLD = 3
+REPETITION_THRESHOLD = 2
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -43,6 +44,7 @@ def classify_entry(entry: dict[str, Any]) -> dict[str, Any]:
     query_text = str(entry.get("query_text", ""))
     marker_hits = safe_int(entry.get("marker_hits"), 0)
     canary_count = safe_int(entry.get("canary_count"), 0)
+    repetition_count = safe_int(entry.get("repetition_count"), 0)
     top1_is_canary = safe_bool(entry.get("top1_is_canary"))
     best_canary_rank_raw = entry.get("best_canary_rank")
     best_canary_rank = None if best_canary_rank_raw is None else safe_int(best_canary_rank_raw, 0)
@@ -62,11 +64,11 @@ def classify_entry(entry: dict[str, Any]) -> dict[str, Any]:
         else:
             reasons.append("marker_seen_but_canary_not_retrieved")
 
-        confidence = 0.70
-        confidence += min(marker_hits, 3) * 0.08
-        confidence += min(canary_count, 3) * 0.05
+        confidence = 0.78
+        confidence += min(marker_hits, 3) * 0.06
+        confidence += min(canary_count, 3) * 0.04
         if top1_is_canary:
-            confidence += 0.10
+            confidence += 0.08
         confidence = min(confidence, 0.99)
 
     elif canary_count > 0:
@@ -79,10 +81,15 @@ def classify_entry(entry: dict[str, Any]) -> dict[str, Any]:
             reasons.append(f"canary_in_top_{TOP_CANARY_RANK_THRESHOLD}")
 
         confidence = 0.75
-        confidence += min(canary_count, 5) * 0.05
+        confidence += min(canary_count, 5) * 0.04
         if top1_is_canary:
-            confidence += 0.10
-        confidence = min(confidence, 0.99)
+            confidence += 0.08
+        confidence = min(confidence, 0.95)
+
+    elif repetition_count >= REPETITION_THRESHOLD:
+        label = "probing"
+        reasons.append("repetition_signal")
+        confidence = 0.65
 
     else:
         label = "benign"
@@ -100,6 +107,7 @@ def classify_entry(entry: dict[str, Any]) -> dict[str, Any]:
         "signals": {
             "marker_hits": marker_hits,
             "canary_count": canary_count,
+            "repetition_count": repetition_count,
             "top1_is_canary": top1_is_canary,
             "best_canary_rank": best_canary_rank,
         },

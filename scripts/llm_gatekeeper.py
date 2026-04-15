@@ -141,6 +141,27 @@ def extract_json_object(text: str) -> dict[str, Any] | None:
         return None
 
 
+def looks_educational(query: str) -> bool:
+    """
+    Heuristic: identify queries that mention markers in an explanatory,
+    not exploitative, way (e.g., "explain", "what is", "usage").
+    """
+    q = query.lower()
+    cues = [
+        "explain ",
+        "what is ",
+        "what does ",
+        "meaning of",
+        "usage",
+        "used for",
+        "how is ",
+        "why is ",
+        "tell me about",
+        "define ",
+    ]
+    return any(cue in q for cue in cues)
+
+
 def build_gatekeeper_prompt(entry: dict[str, Any], retrieved: list[dict[str, Any]], rule: dict[str, Any]) -> str:
     chunks = []
     for item in retrieved[:3]:
@@ -250,10 +271,17 @@ Top retrieved chunks:
 
 def run_gatekeeper(entry: dict[str, Any], cfg: RAGConfig) -> dict[str, Any]:
     """
-    If the rule-based stage says benign, do not call the LLM.
-    If flagged, retrieve context and ask the LLM to confirm or soften.
+    Two-stage gatekeeper:
+    - Fast path: rule-based decision for clearly benign or clearly probing cases.
+    - Slow path: LLM is called only for ambiguous / low-confidence flags.
     """
     rule = rule_based_prelabel(entry)
+    query = str(entry.get("query_text", ""))
+    signals = rule["signals"]
+    marker_hits = signals["marker_hits"]
+    canary_count = signals["canary_count"]
+    top1_is_canary = signals["top1_is_canary"]
+
     if rule["rule_label"] == "benign":
         return {
             "schema_version": 1,
@@ -270,7 +298,29 @@ def run_gatekeeper(entry: dict[str, Any], cfg: RAGConfig) -> dict[str, Any]:
             "rule_reasons": rule["rule_reasons"],
         }
 
-    # Flagged case: use the LLM as a second-stage reviewer.
+    # Flagged case: decide whether we really need the LLM.
+    strong_case = bool(marker_hits > 0 and canary_count >= 2 and top1_is_canary)
+    educational_case = bool(marker_hits > 0 and canary_count <= 1 and looks_educational(query))
+
+    if strong_case or (rule["rule_confidence"] >= 0.95 and not educational_case):
+        # High-confidence rule-based decision; skip LLM to keep latency low.
+        return {
+            "schema_version": 1,
+            "query_id": entry.get("query_id"),
+            "timestamp": entry.get("timestamp"),
+            "query_text": entry.get("query_text"),
+            "final_label": rule["rule_label"],
+            "confidence": rule["rule_confidence"],
+            "reason": "strong_rule_based_decision_no_llm",
+            "rule_label": rule["rule_label"],
+            "rule_confidence": rule["rule_confidence"],
+            "llm_used": False,
+            "should_escalate": rule["rule_label"] != "benign",
+            "signals": rule["signals"],
+            "rule_reasons": rule["rule_reasons"],
+        }
+
+    # Ambiguous flagged case: use the LLM as a second-stage reviewer.
     pipeline = RAGPipeline(cfg)
     pipeline.load_index()
     retrieved = pipeline.retrieve(str(entry.get("query_text", "")), k=safe_int(entry.get("top_k"), 5))
