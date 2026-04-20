@@ -1,0 +1,16 @@
+Incident Document for Nimbus in us-west maintained by Site Reliability.
+Internal reference: INCIDENT-01374.
+Owner: dave@example.internal.
+Created on: 2026-10-06.
+Last updated: 2026-11-11.
+Tags: postmortem, reliability, incident.
+Severity: low.
+Impacted area: dashboard rendering.
+Duration (minutes): 72.
+Status: resolved.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.

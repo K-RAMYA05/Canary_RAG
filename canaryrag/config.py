@@ -31,6 +31,7 @@ class DataConfig:
     combined_dir: Path = Path("data/combined")
     chunk_size: int = 512
     chunk_overlap: int = 64
+    include_canaries_in_generation: bool = False
 
 
 @dataclass

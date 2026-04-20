@@ -1,0 +1,16 @@
+Incident Document for Nimbus in us-west maintained by Support Operations.
+Internal reference: INCIDENT-00996.
+Owner: dave@example.internal.
+Created on: 2025-09-23.
+Last updated: 2025-10-24.
+Tags: reliability, incident, postmortem.
+Severity: critical.
+Impacted area: authentication service.
+Duration (minutes): 115.
+Status: resolved.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.

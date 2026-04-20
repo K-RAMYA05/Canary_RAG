@@ -36,23 +36,50 @@ def generate_keyword_canaries(design: CanaryDesign, count: int = 5) -> list[str]
 
 def generate_semantic_canaries(design: CanaryDesign, count: int = 5) -> list[str]:
     """
-    Generate semantically broad canary documents.
+    Generate semantically targeted canary documents.
 
     Properties:
     - Look like normal knowledge base articles (structure, tone).
-    - Discuss generic topics (e.g., project management, documentation hygiene).
+    - Use vocabulary aligned with semantic probing and membership-inference style attacks.
+    - Avoid broad operational/helpdesk phrasing that could surface for benign queries.
     - Embed a rare token in a way that is semantically neutral but machine-detectable.
     """
     docs: list[str] = []
-    base_paragraph = (
-        "This document discusses general best practices for knowledge management, including version control, "
-        "documentation hygiene, and principles for designing internal search systems. It is intentionally generic "
-        "and should be semantically similar to many real documents in a technical organization. As part of an "
-        "internal evaluation, it embeds an unobtrusive marker phrase, {token}, which does not affect the meaning "
-        "of the text but can be used to detect targeted retrieval or membership inference attacks."
-    )
+    templates = [
+        (
+            "Internal evaluation note: some synthetic records are retained only for security testing and "
+            "marker-registry validation. These records describe dormant internal testing protocol identifiers, "
+            "isolated validation artifacts, and non-production archive entries that should never appear in normal "
+            "customer workflows. One unobtrusive marker phrase, {token}, is preserved so targeted retrieval or "
+            "membership-inference attempts can be detected."
+        ),
+        (
+            "Restricted audit entry: this document summarizes how the least frequently accessed internal material "
+            "is reviewed during search-security assessments. The content references synthetic documents, dormant "
+            "registry items, and isolated test artifacts that exist only to measure unusual retrieval behavior. "
+            "As part of that process, the archived marker {token} is retained in the record."
+        ),
+        (
+            "Security validation memo: analysts sometimes seed clearly synthetic corpus entries that look ordinary "
+            "but are used only for red-team probing studies. These entries mention hidden marker registries, "
+            "internal testing protocol identifiers, and low-visibility documents that should not surface during "
+            "benign use. The marker {token} appears here as a controlled evaluation artifact."
+        ),
+        (
+            "Search integrity checklist: when reviewing whether anyone is enumerating synthetic or security-only "
+            "documents, auditors look for requests about internal testing protocol identifiers, hidden marker lists, "
+            "or the least frequently accessed internal records. This otherwise routine note includes the evaluation "
+            "marker {token} for controlled tracing."
+        ),
+        (
+            "Private archive summary: a subset of security-testing documents is intentionally rare, synthetic, and "
+            "isolated from ordinary support or operations workflows. Their purpose is to reveal probing for hidden "
+            "identifiers, synthetic content, or dormant registry entries. This archive summary keeps the token "
+            "{token} as part of the controlled record."
+        ),
+    ]
     for i in range(count):
-        docs.append(base_paragraph.format(token=design.semantic_token))
+        docs.append(templates[i % len(templates)].format(token=design.semantic_token))
     return docs
 
 
@@ -80,4 +107,3 @@ def write_canary_corpus(
     for idx, text in enumerate(semantic_docs):
         path = output_dir / f"semantic_canary_{idx:02d}.txt"
         path.write_text(text, encoding="utf-8")
-

@@ -1,0 +1,16 @@
+Release Changelog for Nova in ap-south maintained by Core Platform.
+Internal reference: CHANGELOG-00217.
+Owner: eve@example.internal.
+Created on: 2023-08-06.
+Last updated: 2023-09-16.
+Tags: deployment, versioning, release.
+Severity: critical.
+Impacted area: public API.
+Duration (minutes): 134.
+Status: monitoring.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.

@@ -1,0 +1,14 @@
+Internal Policy for Nova in ap-south maintained by Core Platform.
+Internal reference: POLICY-01169.
+Owner: bob@example.internal.
+Created on: 2026-03-15.
+Last updated: 2026-04-16.
+Tags: compliance, governance, security.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.
+
+The data retention policy describes how long different categories of information are stored. Operational logs are kept for troubleshooting and audit purposes, while personally identifiable information is retained only for as long as necessary to provide the service.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.

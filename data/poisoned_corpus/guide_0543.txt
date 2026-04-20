@@ -1,0 +1,12 @@
+How-to Guide for Nimbus in us-west maintained by Security Engineering.
+Internal reference: GUIDE-00543.
+Owner: bob@example.internal.
+Created on: 2024-06-27.
+Last updated: 2024-07-25.
+Tags: internal-doc, runbook, onboarding.
+
+To onboard a new engineer, make sure they have access to version control, continuous integration dashboards, and the documentation portal. Provide an overview of the architecture and a simple starter task that exercises the main workflows without touching production systems.
+
+This guide walks through deploying the application to the staging environment. Start by creating a release branch, running the full test suite, and confirming that any database migrations have been reviewed. Once tests pass, use the deployment tool to promote the artifact and monitor health checks.
+
+Use feature flags to safely roll out changes. Start with a small percentage of internal users, monitor metrics and logs, and gradually increase exposure as confidence grows. Document rollback procedures in the deployment checklist.

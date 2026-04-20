@@ -1,0 +1,16 @@
+Incident Document for Orion in ap-south maintained by Core Platform.
+Internal reference: INCIDENT-00222.
+Owner: bob@example.internal.
+Created on: 2023-08-11.
+Last updated: 2023-08-12.
+Tags: postmortem, incident, reliability.
+Severity: critical.
+Impacted area: public API.
+Duration (minutes): 17.
+Status: detected.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.

@@ -157,8 +157,12 @@ class RAGPipeline:
         """
         retrieved = self.retrieve(query, k=k)
         context_blocks = []
+        canaries_filtered = 0
         for item in retrieved:
             meta = item["metadata"]
+            if meta.is_canary and not self.config.data.include_canaries_in_generation:
+                canaries_filtered += 1
+                continue
             prefix = ""
             if meta.is_canary:
                 prefix = "[CANARY] "
@@ -178,4 +182,6 @@ class RAGPipeline:
         return {
             "answer": answer,
             "retrieved": retrieved,
+            "generation_context_count": len(context_blocks),
+            "canaries_filtered_from_generation": canaries_filtered,
         }

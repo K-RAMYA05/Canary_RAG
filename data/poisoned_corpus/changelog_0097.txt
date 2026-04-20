@@ -1,0 +1,16 @@
+Release Changelog for Nova in eu-central maintained by Site Reliability.
+Internal reference: CHANGELOG-00097.
+Owner: bob@example.internal.
+Created on: 2023-04-08.
+Last updated: 2023-04-28.
+Tags: deployment, versioning, release.
+Severity: low.
+Impacted area: authentication service.
+Duration (minutes): 239.
+Status: detected.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.

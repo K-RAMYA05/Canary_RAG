@@ -1,0 +1,12 @@
+Internal Policy for Nimbus in ap-south maintained by Security Engineering.
+Internal reference: POLICY-00821.
+Owner: eve@example.internal.
+Created on: 2025-04-01.
+Last updated: 2025-04-02.
+Tags: security, compliance, governance.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.

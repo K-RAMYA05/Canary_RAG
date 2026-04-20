@@ -1,0 +1,15 @@
+Support FAQ for Nova in ap-south maintained by Site Reliability.
+Internal reference: FAQ-00728.
+Owner: alice@example.internal.
+Created on: 2024-12-29.
+Last updated: 2025-02-09.
+Tags: how-to, user-facing, support.
+
+Q: How can I request access to a new workspace?
+A: Submit an access request through the internal portal, including the business justification and project name. Your manager will receive an approval task, and access will be granted automatically once it is approved.
+
+Q: How do I reset my account password?
+A: Navigate to the account settings page, choose 'Security', and click on 'Reset Password'. You will receive a one-time link by email. The link expires after 30 minutes, so complete the reset promptly.
+
+Q: Where can I find system status information?
+A: Check the internal status page, which displays the health of major services, recent incidents, and any ongoing maintenance windows.

@@ -1,0 +1,15 @@
+Support FAQ for Orion in eu-central maintained by Core Platform.
+Internal reference: FAQ-00344.
+Owner: eve@example.internal.
+Created on: 2023-12-11.
+Last updated: 2024-01-09.
+Tags: user-facing, support, how-to.
+
+Q: How do I reset my account password?
+A: Navigate to the account settings page, choose 'Security', and click on 'Reset Password'. You will receive a one-time link by email. The link expires after 30 minutes, so complete the reset promptly.
+
+Q: Where can I find system status information?
+A: Check the internal status page, which displays the health of major services, recent incidents, and any ongoing maintenance windows.
+
+Q: How can I request access to a new workspace?
+A: Submit an access request through the internal portal, including the business justification and project name. Your manager will receive an approval task, and access will be granted automatically once it is approved.

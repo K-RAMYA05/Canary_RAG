@@ -1,0 +1,16 @@
+Incident Document for Orion in eu-central maintained by Security Engineering.
+Internal reference: INCIDENT-00402.
+Owner: alice@example.internal.
+Created on: 2024-02-07.
+Last updated: 2024-03-03.
+Tags: reliability, postmortem, incident.
+Severity: high.
+Impacted area: reporting pipeline.
+Duration (minutes): 44.
+Status: detected.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.

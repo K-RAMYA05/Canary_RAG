@@ -1,0 +1,12 @@
+How-to Guide for Nova in eu-central maintained by Site Reliability.
+Internal reference: GUIDE-01311.
+Owner: carol@example.internal.
+Created on: 2026-08-04.
+Last updated: 2026-08-21.
+Tags: internal-doc, onboarding, runbook.
+
+To onboard a new engineer, make sure they have access to version control, continuous integration dashboards, and the documentation portal. Provide an overview of the architecture and a simple starter task that exercises the main workflows without touching production systems.
+
+When debugging a production issue, begin by checking alerts, logs, and dashboards. Reproduce the issue in a lower environment when possible, and communicate status updates in the incident channel.
+
+This guide walks through deploying the application to the staging environment. Start by creating a release branch, running the full test suite, and confirming that any database migrations have been reviewed. Once tests pass, use the deployment tool to promote the artifact and monitor health checks.

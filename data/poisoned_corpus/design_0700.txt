@@ -1,0 +1,12 @@
+Design Note for Orion in ap-south maintained by Site Reliability.
+Internal reference: DESIGN-00700.
+Owner: alice@example.internal.
+Created on: 2024-12-01.
+Last updated: 2024-12-14.
+Tags: engineering, technical-design, architecture.
+
+The system is organized into several services connected through a message bus. Each service owns its own data storage and exposes a clear API. Requests from the user interface flow through an edge gateway, which handles authentication, rate limiting, and routing to backend services.
+
+Caching is introduced at multiple layers to reduce latency. The client caches stable configuration data, while the edge gateway caches frequently requested resources with short time-to-live values. Backend services maintain their own caches for expensive computations.
+
+Each service publishes metrics for latency, error rate, and throughput. Dashboards aggregate these metrics to provide a high-level view, while detailed panels help engineers drill into specific components.

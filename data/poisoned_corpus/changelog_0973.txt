@@ -1,0 +1,18 @@
+Release Changelog for Orion in eu-central maintained by Data Engineering.
+Internal reference: CHANGELOG-00973.
+Owner: alice@example.internal.
+Created on: 2025-08-31.
+Last updated: 2025-10-05.
+Tags: versioning, release, deployment.
+Severity: low.
+Impacted area: background jobs.
+Duration (minutes): 116.
+Status: mitigated.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.

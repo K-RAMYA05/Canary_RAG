@@ -1,0 +1,16 @@
+Release Changelog for Nova in us-west maintained by Security Engineering.
+Internal reference: CHANGELOG-00091.
+Owner: dave@example.internal.
+Created on: 2023-04-02.
+Last updated: 2023-05-03.
+Tags: release, deployment, versioning.
+Severity: low.
+Impacted area: public API.
+Duration (minutes): 235.
+Status: monitoring.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import re
 from typing import Iterable
 
 import numpy as np
@@ -21,6 +23,7 @@ class EmbeddingModel:
         dim: int = 384,
         keyword_token: str | None = None,
         semantic_token: str | None = None,
+        semantic_probe_terms: tuple[str, ...] | None = None,
     ) -> None:
         # model_name is accepted for API compatibility but ignored.
         self._base_dim = dim
@@ -38,7 +41,29 @@ class EmbeddingModel:
             specials[semantic_token.lower()] = next_idx
             next_idx += 1
 
+        probe_terms = semantic_probe_terms or (
+            "synthetic",
+            "protocol",
+            "identifier",
+            "identifiers",
+            "registry",
+            "hidden",
+            "least",
+            "accessed",
+            "artifact",
+            "artifacts",
+            "dormant",
+        )
+        probe_indices: dict[str, int] = {}
+        for term in probe_terms:
+            normalized = term.lower()
+            if normalized in specials or normalized in probe_indices:
+                continue
+            probe_indices[normalized] = next_idx
+            next_idx += 1
+
         self._special_indices = specials
+        self._semantic_probe_indices = probe_indices
         self._dim = next_idx
 
     @property
@@ -63,9 +88,9 @@ class EmbeddingModel:
         mat = np.zeros((n, dim), dtype="float32")
 
         for i, text in enumerate(texts):
-            for token in text.lower().split():
+            for token in _tokenize(text):
                 # Base hashed dimension.
-                idx = hash(token) % base_dim
+                idx = _stable_hash_index(token, base_dim)
                 mat[i, idx] += 1.0
 
                 # Optional special canary dimension.
@@ -75,8 +100,25 @@ class EmbeddingModel:
                     # when present, without affecting benign queries.
                     mat[i, special_idx] += 5.0
 
+                probe_idx = self._semantic_probe_indices.get(token)
+                if probe_idx is not None:
+                    # Give semantically suspicious probe concepts a smaller,
+                    # controlled boost so semantic canaries can align with
+                    # queries about hidden test artifacts and marker registries
+                    # without broadly changing benign retrieval behavior.
+                    mat[i, probe_idx] += 2.5
+
         # L2 normalize rows where possible.
         norms = np.linalg.norm(mat, axis=1, keepdims=True)
         nonzero = norms[:, 0] > 0
         mat[nonzero] /= norms[nonzero]
         return mat
+
+
+def _tokenize(text: str) -> list[str]:
+    return re.findall(r"[A-Za-z0-9_-]+", text.lower())
+
+
+def _stable_hash_index(token: str, base_dim: int) -> int:
+    digest = hashlib.blake2b(token.encode("utf-8"), digest_size=8).digest()
+    return int.from_bytes(digest, byteorder="big", signed=False) % base_dim

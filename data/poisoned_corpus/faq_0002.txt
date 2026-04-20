@@ -1,0 +1,15 @@
+Support FAQ for Nova in ap-south maintained by Site Reliability.
+Internal reference: FAQ-00002.
+Owner: dave@example.internal.
+Created on: 2023-01-03.
+Last updated: 2023-01-05.
+Tags: how-to, user-facing, support.
+
+Q: How do I reset my account password?
+A: Navigate to the account settings page, choose 'Security', and click on 'Reset Password'. You will receive a one-time link by email. The link expires after 30 minutes, so complete the reset promptly.
+
+Q: What should I do if I see a 500 error?
+A: First, refresh the page to ensure it was not a transient issue. If the problem persists, capture the time, URL, and any steps to reproduce. Open an incident ticket with this information so the on-call engineer can investigate logs and metrics.
+
+Q: How can I request access to a new workspace?
+A: Submit an access request through the internal portal, including the business justification and project name. Your manager will receive an approval task, and access will be granted automatically once it is approved.

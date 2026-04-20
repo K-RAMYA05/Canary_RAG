@@ -9,9 +9,9 @@ This repository implements **Person 1**'s scope from the project description:
 
 ## Overview
 
-- **Embedding model**: lightweight hashing-based embedder (no external ML dependency)
+- **Embedding model**: lightweight hashing-based embedder with stable hashing and dedicated canary dimensions
 - **Vector database**: NumPy-based cosine-similarity index with JSONL metadata
-- **LLM for generation**: Hugging Face `gpt2` by default (configurable, optional)
+- **LLM for generation**: Hugging Face causal LM, configurable in `canaryrag/config.py`
 - **Canaries**:
   - Keyword-dense canaries for poisoning / boosting detection
   - Semantically general canaries for probing / membership inference
@@ -29,28 +29,34 @@ source .venv/bin/activate  # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-> Note: the first run will download models from Hugging Face
-> (`sentence-transformers` and `distilgpt2`), which requires network access.
+> Note: the first answer-generation run may download the configured Hugging Face
+> causal LM, which requires network access. Index building and retrieval-only
+> workflows do not require model downloads.
 
 ## Project Layout
 
 - `canaryrag/`
   - `config.py` – central configuration for models, data paths, and canary tokens
-  - `embeddings.py` – simple hashing-based embedding model (deterministic float32 vectors)
+  - `embeddings.py` – simple hashing-based embedding model with stable token hashing
   - `vectorstore.py` – in-memory cosine-similarity vector store + JSONL metadata
   - `llm.py` – Hugging Face text generation wrapper with graceful fallback if transformers is missing
   - `canary.py` – canary document design and corpus generator
   - `pipeline.py` – end-to-end RAG pipeline (build index + query)
+  - `active_defense.py` – session-aware honey-text deployment and follow-up escalation logic
 - `scripts/`
   - `generate_canaries.py` – materialize canary corpus under `data/canaries/`
   - `generate_benign_corpus.py` – generate a synthetic benign text corpus
   - `build_index.py` – build vector index from benign corpus + canaries
   - `query_rag.py` – CLI for querying the RAG system
   - `sanity_check.py` – check canary hit rate for benign queries
+  - `simulate_poisoning.py` – create a poisoned corpus by copying the clean corpus and injecting malicious documents
+  - `run_poisoning_experiment.py` – build clean vs poisoned indexes and compare retrieval behavior
+  - `run_active_defense_experiment.py` – run session-based honey-text / active-defense scenarios
 - `data/`
   - `corpus/` – place your benign `.txt` files here
   - `canaries/` – generated canary `.txt` files
   - `combined/` – optional workspace if you want to merge corpora
+  - `active_defense_scenarios.jsonl` – scenario dataset for active-defense evaluation
 - `artifacts/`
   - `faiss_index.bin.npy` – saved embedding matrix (kept under this base name for compatibility)
   - `metadata.jsonl` – per-vector metadata (doc id, canary flags, text)
@@ -160,6 +166,8 @@ python scripts/query_rag.py "How do I reset my password?"
 Output:
 
 - Generated answer from the LLM, restricted to retrieved context.
+- By default, retrieved canary chunks are excluded from the answer-generation prompt
+  and used only as detection signals.
 - List of retrieved chunks with:
   - similarity scores
   - document IDs
@@ -190,15 +198,90 @@ Expected behavior for a reasonably benign corpus:
   - Increase corpus size or diversity.
   - Use this behavior as a red flag in later detection stages.
 
+## Step 6 – Simulate Corpus Poisoning
+
+To model actual index poisoning rather than only poisoning-flavored prompts:
+
+```bash
+python scripts/run_poisoning_experiment.py
+```
+
+What it does:
+
+- Copies `data/corpus/` into `data/poisoned_corpus/`
+- Injects synthetic poisoned documents that resemble normal content while carrying canary-aligned markers
+- Builds:
+  - a clean comparison index
+  - a poisoned comparison index
+- Runs the labeled query set against both
+- Saves side-by-side logs and a summary JSON under `artifacts/`
+
+Useful outputs:
+
+- `artifacts/poisoning_clean_retrieval_logs.jsonl`
+- `artifacts/poisoning_retrieval_logs.jsonl`
+- `artifacts/poisoning_experiment_summary.json`
+
+## Step 7 – Run Active Defense / Honeypot Evaluation
+
+To evaluate session-level honey-text deployment and bait-follow-up escalation:
+
+```bash
+python scripts/run_active_defense_experiment.py
+```
+
+What it does:
+
+- Loads session scenarios from `data/active_defense_scenarios.jsonl`
+- Runs normal retrieval for each query
+- Deploys a session-specific honey registry reference when a query is suspicious
+- Distinguishes:
+  - benign sessions
+  - curious sessions that do not pursue the bait
+  - persistent sessions that explicitly follow the bait
+- Escalates sessions that reference the issued honey token or honey registry entry
+
+Useful outputs:
+
+- `artifacts/active_defense_logs.jsonl`
+- `artifacts/active_defense_summary.json`
+
+## Step 8 – Run Practicality Study
+
+To quantify how canary count affects retrieval quality and overhead:
+
+```bash
+python scripts/run_practicality_study.py
+```
+
+What it does:
+
+- Sweeps several total canary counts
+- Builds isolated indexes for each setting
+- Measures:
+  - canary hit rates on the labeled query set
+  - index size
+  - metadata size
+  - build time
+  - batch query time
+  - chunk growth as canaries increase
+
+Useful outputs:
+
+- `artifacts/practicality_study_summary.json`
+- per-setting index and metadata files under `artifacts/practicality/`
+
 ## Customization
 
-- Change model names, data directories, and canary tokens in `canaryrag/config.py`.
-- Swap out the default `gpt2` for a different open-source causal LLM (e.g., `gpt2-medium`)
-  if you have the compute and storage. If `transformers` is not installed, the
-  pipeline will still run and return a clear placeholder answer.
+- Change model names, data directories, generation behavior, and canary tokens in `canaryrag/config.py`.
+- Swap out the default causal LM for a different open-source model if you have
+  the compute and storage. If `transformers` is not installed, the pipeline will
+  still run and return a clear placeholder answer.
 - The current embedding model is intentionally lightweight and dependency-free; you
   can replace `EmbeddingModel` with a SentenceTransformer-based model if you prefer.
 - Adjust `chunk_size` and `chunk_overlap` for your document distribution.
+- If you explicitly want canaries included in answer-generation context for
+  debugging, set `include_canaries_in_generation=True` in `DataConfig`.
 
 ## What Is Implemented (Person 1 Scope)
 
@@ -493,4 +576,3 @@ python scripts/llm_gatekeeper.py --latest
 * canary presence
 * rank thresholds
 * repetition detection
-
