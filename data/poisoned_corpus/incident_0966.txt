@@ -1,0 +1,16 @@
+Incident Document for Nimbus in ap-south maintained by Core Platform.
+Internal reference: INCIDENT-00966.
+Owner: eve@example.internal.
+Created on: 2025-08-24.
+Last updated: 2025-09-03.
+Tags: postmortem, reliability, incident.
+Severity: medium.
+Impacted area: authentication service.
+Duration (minutes): 22.
+Status: resolved.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.

@@ -130,15 +130,32 @@ def select_entries(entries: list[dict[str, Any]], query_id: str | None, latest: 
 
 
 def extract_json_object(text: str) -> dict[str, Any] | None:
-    # Try to pull the first JSON object from model output.
-    match = re.search(r"\{[\s\S]*\}", text)
-    if not match:
-        return None
-    candidate = match.group(0).strip()
-    try:
-        return json.loads(candidate)
-    except json.JSONDecodeError:
-        return None
+    candidates: list[str] = []
+
+    fenced = re.findall(r"```(?:json)?\s*([\s\S]*?)```", text, flags=re.IGNORECASE)
+    candidates.extend(chunk.strip() for chunk in fenced if chunk.strip())
+
+    start_positions = [m.start() for m in re.finditer(r"\{", text)]
+    for start in start_positions:
+        depth = 0
+        for idx in range(start, len(text)):
+            ch = text[idx]
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    candidates.append(text[start : idx + 1].strip())
+                    break
+
+    for candidate in candidates:
+        try:
+            parsed = json.loads(candidate)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    return None
 
 
 def looks_educational(query: str) -> bool:
@@ -158,6 +175,22 @@ def looks_educational(query: str) -> bool:
         "why is ",
         "tell me about",
         "define ",
+    ]
+    return any(cue in q for cue in cues)
+
+
+def looks_action_or_exfiltration_oriented(query: str) -> bool:
+    q = query.lower()
+    cues = [
+        "show ",
+        "return ",
+        "list ",
+        "give me",
+        "how many",
+        "contains ",
+        "present in your index",
+        "secret ",
+        "store ",
     ]
     return any(cue in q for cue in cues)
 
@@ -301,6 +334,24 @@ def run_gatekeeper(entry: dict[str, Any], cfg: RAGConfig) -> dict[str, Any]:
     # Flagged case: decide whether we really need the LLM.
     strong_case = bool(marker_hits > 0 and canary_count >= 2 and top1_is_canary)
     educational_case = bool(marker_hits > 0 and canary_count <= 1 and looks_educational(query))
+    likely_explanatory = bool(marker_hits > 0 and looks_educational(query) and not looks_action_or_exfiltration_oriented(query))
+
+    if likely_explanatory:
+        return {
+            "schema_version": 1,
+            "query_id": entry.get("query_id"),
+            "timestamp": entry.get("timestamp"),
+            "query_text": entry.get("query_text"),
+            "final_label": "benign",
+            "confidence": 0.74,
+            "reason": "educational_marker_mention_without_direct_exfiltration",
+            "rule_label": rule["rule_label"],
+            "rule_confidence": rule["rule_confidence"],
+            "llm_used": False,
+            "should_escalate": False,
+            "signals": rule["signals"],
+            "rule_reasons": rule["rule_reasons"],
+        }
 
     if strong_case or (rule["rule_confidence"] >= 0.95 and not educational_case):
         # High-confidence rule-based decision; skip LLM to keep latency low.

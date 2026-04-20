@@ -1,0 +1,16 @@
+Release Changelog for Helios in eu-central maintained by Data Engineering.
+Internal reference: CHANGELOG-00145.
+Owner: carol@example.internal.
+Created on: 2023-05-26.
+Last updated: 2023-05-31.
+Tags: release, versioning, deployment.
+Severity: high.
+Impacted area: authentication service.
+Duration (minutes): 237.
+Status: detected.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.

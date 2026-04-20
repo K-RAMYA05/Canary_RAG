@@ -1,0 +1,12 @@
+Internal Policy for Atlas in eu-central maintained by Core Platform.
+Internal reference: POLICY-01031.
+Owner: carol@example.internal.
+Created on: 2025-10-28.
+Last updated: 2025-11-25.
+Tags: governance, security, compliance.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The data retention policy describes how long different categories of information are stored. Operational logs are kept for troubleshooting and audit purposes, while personally identifiable information is retained only for as long as necessary to provide the service.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.

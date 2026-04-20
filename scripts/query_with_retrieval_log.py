@@ -58,13 +58,17 @@ def main() -> None:
             f"canary={item['is_canary']} type={item['canary_type']}"
         )
 
-    # if args.no_answer:
-    #     return
+    if args.no_answer:
+        return
 
-    # # This uses the existing pipeline as-is.
-    # answer_out = pipeline.generate_answer(args.question, k=args.k)
-    # print("\n=== Answer ===\n")
-    # print(answer_out["answer"])
+    answer_out = pipeline.generate_answer(args.question, k=args.k)
+    print("\n=== Answer ===\n")
+    print(answer_out["answer"])
+    print(
+        "\n=== Generation Context Summary ===\n"
+        f"chunks_used={answer_out['generation_context_count']} "
+        f"canaries_filtered={answer_out['canaries_filtered_from_generation']}"
+    )
 
 
 if __name__ == "__main__":

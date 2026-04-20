@@ -1,0 +1,14 @@
+Internal Policy for Atlas in eu-central maintained by Core Platform.
+Internal reference: POLICY-00935.
+Owner: eve@example.internal.
+Created on: 2025-07-24.
+Last updated: 2025-08-03.
+Tags: governance, security, compliance.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.
+
+The data retention policy describes how long different categories of information are stored. Operational logs are kept for troubleshooting and audit purposes, while personally identifiable information is retained only for as long as necessary to provide the service.

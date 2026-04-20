@@ -1,0 +1,16 @@
+Incident Document for Atlas in us-west maintained by Core Platform.
+Internal reference: INCIDENT-00888.
+Owner: eve@example.internal.
+Created on: 2025-06-07.
+Last updated: 2025-07-21.
+Tags: postmortem, incident, reliability.
+Severity: high.
+Impacted area: dashboard rendering.
+Duration (minutes): 74.
+Status: mitigated.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.

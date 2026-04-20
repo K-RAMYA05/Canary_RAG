@@ -1,0 +1,16 @@
+Incident Document for Orion in ap-south maintained by Site Reliability.
+Internal reference: INCIDENT-00462.
+Owner: alice@example.internal.
+Created on: 2024-04-07.
+Last updated: 2024-04-24.
+Tags: postmortem, reliability, incident.
+Severity: critical.
+Impacted area: public API.
+Duration (minutes): 29.
+Status: detected.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Post-incident review: The outage was traced to a misconfigured database connection pool. The pool size was reduced during routine maintenance, which caused contention under normal peak load. The fix involved restoring appropriate pool parameters and adding a pre-deployment check.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.

@@ -1,0 +1,16 @@
+Incident Document for Atlas in us-east maintained by Security Engineering.
+Internal reference: INCIDENT-01446.
+Owner: dave@example.internal.
+Created on: 2026-12-17.
+Last updated: 2026-12-28.
+Tags: incident, reliability, postmortem.
+Severity: high.
+Impacted area: authentication service.
+Duration (minutes): 200.
+Status: detected.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.

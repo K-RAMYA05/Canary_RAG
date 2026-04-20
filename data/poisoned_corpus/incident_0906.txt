@@ -1,0 +1,16 @@
+Incident Document for Helios in eu-central maintained by Security Engineering.
+Internal reference: INCIDENT-00906.
+Owner: alice@example.internal.
+Created on: 2025-06-25.
+Last updated: 2025-07-20.
+Tags: incident, postmortem, reliability.
+Severity: low.
+Impacted area: dashboard rendering.
+Duration (minutes): 161.
+Status: monitoring.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.

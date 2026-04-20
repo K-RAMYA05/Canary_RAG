@@ -1,0 +1,16 @@
+Release Changelog for Nimbus in us-west maintained by Core Platform.
+Internal reference: CHANGELOG-01177.
+Owner: carol@example.internal.
+Created on: 2026-03-23.
+Last updated: 2026-04-09.
+Tags: deployment, release, versioning.
+Severity: high.
+Impacted area: dashboard rendering.
+Duration (minutes): 123.
+Status: detected.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.

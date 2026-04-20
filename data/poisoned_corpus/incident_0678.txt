@@ -1,0 +1,16 @@
+Incident Document for Helios in us-west maintained by Site Reliability.
+Internal reference: INCIDENT-00678.
+Owner: bob@example.internal.
+Created on: 2024-11-09.
+Last updated: 2024-11-27.
+Tags: reliability, incident, postmortem.
+Severity: critical.
+Impacted area: background jobs.
+Duration (minutes): 7.
+Status: resolved.
+
+Timeline: The first alert fired on the metrics dashboard, followed by customer reports in the support channel. Engineers confirmed the issue, identified the suspect deployment, and coordinated a rollback while monitoring error rates and latency.
+
+Incident report summary: An elevated error rate was observed in the primary API during peak traffic. The immediate impact was that some users experienced timeouts while loading dashboards. The response included rolling back a configuration change and adding temporary logging to narrow down the root cause.
+
+Follow-up actions: Add automated checks for configuration drift, improve alert descriptions to reduce ambiguity, and document decision points from the incident to refine the response playbook.

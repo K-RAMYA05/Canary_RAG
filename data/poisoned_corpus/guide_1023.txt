@@ -1,0 +1,14 @@
+How-to Guide for Orion in us-east maintained by Site Reliability.
+Internal reference: GUIDE-01023.
+Owner: alice@example.internal.
+Created on: 2025-10-20.
+Last updated: 2025-10-23.
+Tags: onboarding, internal-doc, runbook.
+
+Use feature flags to safely roll out changes. Start with a small percentage of internal users, monitor metrics and logs, and gradually increase exposure as confidence grows. Document rollback procedures in the deployment checklist.
+
+This guide walks through deploying the application to the staging environment. Start by creating a release branch, running the full test suite, and confirming that any database migrations have been reviewed. Once tests pass, use the deployment tool to promote the artifact and monitor health checks.
+
+When debugging a production issue, begin by checking alerts, logs, and dashboards. Reproduce the issue in a lower environment when possible, and communicate status updates in the incident channel.
+
+To onboard a new engineer, make sure they have access to version control, continuous integration dashboards, and the documentation portal. Provide an overview of the architecture and a simple starter task that exercises the main workflows without touching production systems.

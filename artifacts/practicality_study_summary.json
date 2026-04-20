@@ -1,0 +1,430 @@
+{
+  "counts_tested": [
+    4,
+    10,
+    20,
+    50
+  ],
+  "results": [
+    {
+      "total_canaries": 4,
+      "keyword_canaries": 2,
+      "semantic_canaries": 2,
+      "canary_files": 4,
+      "canary_chunks": 6,
+      "embedding_rows": 4183,
+      "embedding_dim": 397,
+      "index_bytes": 6642732,
+      "metadata_bytes": 2271522,
+      "build_seconds": 0.3143,
+      "query_batch_seconds": 0.0456,
+      "avg_query_seconds": 0.001267,
+      "retrieval_summary": {
+        "total_queries": 36,
+        "overall": {
+          "canary_hit_rate": 0.4444444444444444,
+          "top1_canary_rate": 0.4444444444444444
+        },
+        "by_label": {
+          "benign": {
+            "total": 20,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "probing": {
+            "total": 16,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        },
+        "by_group": {
+          "support": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "changelog": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "incident": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "policy": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "design": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "docs": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "operations": {
+            "total": 4,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "onboarding": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "engineering": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "direct_token": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "repetition": {
+            "total": 2,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "membership_inference": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "probing_semantic": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "poisoning": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        }
+      }
+    },
+    {
+      "total_canaries": 10,
+      "keyword_canaries": 5,
+      "semantic_canaries": 5,
+      "canary_files": 10,
+      "canary_chunks": 15,
+      "embedding_rows": 4192,
+      "embedding_dim": 397,
+      "index_bytes": 6657024,
+      "metadata_bytes": 2276538,
+      "build_seconds": 0.248,
+      "query_batch_seconds": 0.0443,
+      "avg_query_seconds": 0.00123,
+      "retrieval_summary": {
+        "total_queries": 36,
+        "overall": {
+          "canary_hit_rate": 0.4444444444444444,
+          "top1_canary_rate": 0.4444444444444444
+        },
+        "by_label": {
+          "benign": {
+            "total": 20,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "probing": {
+            "total": 16,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        },
+        "by_group": {
+          "support": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "changelog": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "incident": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "policy": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "design": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "docs": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "operations": {
+            "total": 4,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "onboarding": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "engineering": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "direct_token": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "repetition": {
+            "total": 2,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "membership_inference": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "probing_semantic": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "poisoning": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        }
+      }
+    },
+    {
+      "total_canaries": 20,
+      "keyword_canaries": 10,
+      "semantic_canaries": 10,
+      "canary_files": 20,
+      "canary_chunks": 30,
+      "embedding_rows": 4207,
+      "embedding_dim": 397,
+      "index_bytes": 6680844,
+      "metadata_bytes": 2285002,
+      "build_seconds": 0.2318,
+      "query_batch_seconds": 0.0405,
+      "avg_query_seconds": 0.001126,
+      "retrieval_summary": {
+        "total_queries": 36,
+        "overall": {
+          "canary_hit_rate": 0.4444444444444444,
+          "top1_canary_rate": 0.4444444444444444
+        },
+        "by_label": {
+          "benign": {
+            "total": 20,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "probing": {
+            "total": 16,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        },
+        "by_group": {
+          "support": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "changelog": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "incident": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "policy": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "design": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "docs": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "operations": {
+            "total": 4,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "onboarding": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "engineering": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "direct_token": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "repetition": {
+            "total": 2,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "membership_inference": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "probing_semantic": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "poisoning": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        }
+      }
+    },
+    {
+      "total_canaries": 50,
+      "keyword_canaries": 25,
+      "semantic_canaries": 25,
+      "canary_files": 50,
+      "canary_chunks": 75,
+      "embedding_rows": 4252,
+      "embedding_dim": 397,
+      "index_bytes": 6752304,
+      "metadata_bytes": 2310394,
+      "build_seconds": 0.2286,
+      "query_batch_seconds": 0.0404,
+      "avg_query_seconds": 0.001122,
+      "retrieval_summary": {
+        "total_queries": 36,
+        "overall": {
+          "canary_hit_rate": 0.4444444444444444,
+          "top1_canary_rate": 0.4444444444444444
+        },
+        "by_label": {
+          "benign": {
+            "total": 20,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "probing": {
+            "total": 16,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        },
+        "by_group": {
+          "support": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "changelog": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "incident": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "policy": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "design": {
+            "total": 3,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "docs": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "operations": {
+            "total": 4,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "onboarding": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "engineering": {
+            "total": 1,
+            "canary_hit_rate": 0.0,
+            "top1_canary_rate": 0.0
+          },
+          "direct_token": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "repetition": {
+            "total": 2,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "membership_inference": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "probing_semantic": {
+            "total": 3,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          },
+          "poisoning": {
+            "total": 4,
+            "canary_hit_rate": 1.0,
+            "top1_canary_rate": 1.0
+          }
+        }
+      }
+    }
+  ]
+}

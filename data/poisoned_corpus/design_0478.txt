@@ -1,0 +1,12 @@
+Design Note for Nimbus in us-west maintained by Data Engineering.
+Internal reference: DESIGN-00478.
+Owner: carol@example.internal.
+Created on: 2024-04-23.
+Last updated: 2024-05-09.
+Tags: architecture, technical-design, engineering.
+
+Each service publishes metrics for latency, error rate, and throughput. Dashboards aggregate these metrics to provide a high-level view, while detailed panels help engineers drill into specific components.
+
+The data model is designed to support gradual evolution. Schemas use additive changes where possible, and deprecations are communicated before fields are removed. Migrations are tested in staging before production.
+
+The system is organized into several services connected through a message bus. Each service owns its own data storage and exposes a clear API. Requests from the user interface flow through an edge gateway, which handles authentication, rate limiting, and routing to backend services.

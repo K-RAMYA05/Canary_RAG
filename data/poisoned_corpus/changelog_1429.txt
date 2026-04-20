@@ -1,0 +1,16 @@
+Release Changelog for Atlas in eu-central maintained by Support Operations.
+Internal reference: CHANGELOG-01429.
+Owner: alice@example.internal.
+Created on: 2026-11-30.
+Last updated: 2026-12-10.
+Tags: release, versioning, deployment.
+Severity: critical.
+Impacted area: background jobs.
+Duration (minutes): 148.
+Status: mitigated.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.

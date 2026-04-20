@@ -1,0 +1,15 @@
+Support FAQ for Atlas in us-west maintained by Data Engineering.
+Internal reference: FAQ-00326.
+Owner: bob@example.internal.
+Created on: 2023-11-23.
+Last updated: 2023-12-28.
+Tags: support, how-to, user-facing.
+
+Q: Where can I find system status information?
+A: Check the internal status page, which displays the health of major services, recent incidents, and any ongoing maintenance windows.
+
+Q: What should I do if I see a 500 error?
+A: First, refresh the page to ensure it was not a transient issue. If the problem persists, capture the time, URL, and any steps to reproduce. Open an incident ticket with this information so the on-call engineer can investigate logs and metrics.
+
+Q: How do I reset my account password?
+A: Navigate to the account settings page, choose 'Security', and click on 'Reset Password'. You will receive a one-time link by email. The link expires after 30 minutes, so complete the reset promptly.

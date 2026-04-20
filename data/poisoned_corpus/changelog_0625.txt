@@ -1,0 +1,16 @@
+Release Changelog for Nova in eu-central maintained by Core Platform.
+Internal reference: CHANGELOG-00625.
+Owner: eve@example.internal.
+Created on: 2024-09-17.
+Last updated: 2024-10-09.
+Tags: release, versioning, deployment.
+Severity: low.
+Impacted area: public API.
+Duration (minutes): 25.
+Status: resolved.
+
+Release notes: This version includes improvements to the search interface, more precise filters, and better handling of time ranges. Several minor bugs were fixed, including alignment issues in the navigation bar and inconsistent error messages reported by the API.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.

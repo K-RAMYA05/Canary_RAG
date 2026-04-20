@@ -1,0 +1,12 @@
+Design Note for Orion in us-west maintained by Core Platform.
+Internal reference: DESIGN-01396.
+Owner: carol@example.internal.
+Created on: 2026-10-28.
+Last updated: 2026-10-29.
+Tags: engineering, technical-design, architecture.
+
+Caching is introduced at multiple layers to reduce latency. The client caches stable configuration data, while the edge gateway caches frequently requested resources with short time-to-live values. Backend services maintain their own caches for expensive computations.
+
+Each service publishes metrics for latency, error rate, and throughput. Dashboards aggregate these metrics to provide a high-level view, while detailed panels help engineers drill into specific components.
+
+The data model is designed to support gradual evolution. Schemas use additive changes where possible, and deprecations are communicated before fields are removed. Migrations are tested in staging before production.

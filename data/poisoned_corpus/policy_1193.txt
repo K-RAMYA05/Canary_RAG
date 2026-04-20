@@ -1,0 +1,12 @@
+Internal Policy for Atlas in ap-south maintained by Support Operations.
+Internal reference: POLICY-01193.
+Owner: carol@example.internal.
+Created on: 2026-04-08.
+Last updated: 2026-05-22.
+Tags: governance, security, compliance.
+
+The access review policy describes how managers periodically verify that team members have appropriate permissions. Access that is no longer required should be revoked promptly to reduce risk.
+
+The acceptable use policy requires that all employees protect account credentials and avoid sharing confidential information in public forums. Access to systems must be tied to individual accounts, and shared passwords are not permitted.
+
+The incident response policy outlines how to declare an incident, who to notify, and what roles are responsible for coordination, communications, and technical remediation. Regular drills are recommended to keep the process familiar.

@@ -1,0 +1,15 @@
+Support FAQ for Nimbus in ap-south maintained by Data Engineering.
+Internal reference: FAQ-01004.
+Owner: dave@example.internal.
+Created on: 2025-10-01.
+Last updated: 2025-10-23.
+Tags: user-facing, how-to, support.
+
+Q: What should I do if I see a 500 error?
+A: First, refresh the page to ensure it was not a transient issue. If the problem persists, capture the time, URL, and any steps to reproduce. Open an incident ticket with this information so the on-call engineer can investigate logs and metrics.
+
+Q: How do I reset my account password?
+A: Navigate to the account settings page, choose 'Security', and click on 'Reset Password'. You will receive a one-time link by email. The link expires after 30 minutes, so complete the reset promptly.
+
+Q: How can I request access to a new workspace?
+A: Submit an access request through the internal portal, including the business justification and project name. Your manager will receive an approval task, and access will be granted automatically once it is approved.

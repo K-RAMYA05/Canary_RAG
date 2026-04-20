@@ -1,0 +1,16 @@
+Release Changelog for Orion in ap-south maintained by Support Operations.
+Internal reference: CHANGELOG-00241.
+Owner: dave@example.internal.
+Created on: 2023-08-30.
+Last updated: 2023-10-03.
+Tags: deployment, release, versioning.
+Severity: high.
+Impacted area: background jobs.
+Duration (minutes): 226.
+Status: mitigated.
+
+Deprecations: Several legacy endpoints have been marked as deprecated. Clients are encouraged to migrate to the newer, versioned APIs before the next major release.
+
+Performance updates: Batch processing jobs now run in parallel, and redundant queries have been removed. The user interface displays progress while long reports are generated, and streaming responses are used for expensive computations.
+
+Developer experience: New command-line tools assist with local testing, database migrations, and feature flag management. Documentation for the build pipeline has been expanded with examples and troubleshooting tips.
