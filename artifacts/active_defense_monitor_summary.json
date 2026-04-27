@@ -1,0 +1,16 @@
+{
+  "total_turns": 4,
+  "honey_deployments": 0,
+  "monitored_turns": 4,
+  "escalations": 0,
+  "benign_false_escalations": 0,
+  "by_profile": {
+    "curious": {
+      "sessions": 4,
+      "honey_sessions": 0,
+      "escalated_sessions": 0
+    }
+  },
+  "scenario_count": 4,
+  "log_path": "artifacts/active_defense_monitor_logs.jsonl"
+}

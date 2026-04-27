@@ -15,7 +15,7 @@ def main() -> None:
     cfg = RAGConfig()
     pipeline = RAGPipeline(cfg)
     pipeline.build_index(include_canaries=True)
-    print("Index built and saved.")
+    print(f"Index built and saved using vector backend: {pipeline.vector_backend}")
 
 
 if __name__ == "__main__":

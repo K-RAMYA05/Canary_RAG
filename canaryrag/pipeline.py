@@ -150,6 +150,10 @@ class RAGPipeline:
         results = self._store.search(query_emb, k=k)[0]
         return results
 
+    @property
+    def vector_backend(self) -> str:
+        return self._store.backend_name
+
     def generate_answer(self, query: str, k: int = 5) -> dict:
         """
         Retrieve top-k documents and generate an answer using the LLM.

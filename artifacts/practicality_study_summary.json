@@ -16,14 +16,14 @@
       "embedding_dim": 397,
       "index_bytes": 6642732,
       "metadata_bytes": 2271522,
-      "build_seconds": 0.3143,
-      "query_batch_seconds": 0.0456,
-      "avg_query_seconds": 0.001267,
+      "build_seconds": 0.6339,
+      "query_batch_seconds": 0.0059,
+      "avg_query_seconds": 0.000164,
       "retrieval_summary": {
         "total_queries": 36,
         "overall": {
-          "canary_hit_rate": 0.4444444444444444,
-          "top1_canary_rate": 0.4444444444444444
+          "canary_hit_rate": 0.4166666666666667,
+          "top1_canary_rate": 0.4166666666666667
         },
         "by_label": {
           "benign": {
@@ -33,8 +33,8 @@
           },
           "probing": {
             "total": 16,
-            "canary_hit_rate": 1.0,
-            "top1_canary_rate": 1.0
+            "canary_hit_rate": 0.9375,
+            "top1_canary_rate": 0.9375
           }
         },
         "by_group": {
@@ -100,8 +100,8 @@
           },
           "probing_semantic": {
             "total": 3,
-            "canary_hit_rate": 1.0,
-            "top1_canary_rate": 1.0
+            "canary_hit_rate": 0.6666666666666666,
+            "top1_canary_rate": 0.6666666666666666
           },
           "poisoning": {
             "total": 4,
@@ -121,9 +121,9 @@
       "embedding_dim": 397,
       "index_bytes": 6657024,
       "metadata_bytes": 2276538,
-      "build_seconds": 0.248,
-      "query_batch_seconds": 0.0443,
-      "avg_query_seconds": 0.00123,
+      "build_seconds": 0.5691,
+      "query_batch_seconds": 0.0062,
+      "avg_query_seconds": 0.000173,
       "retrieval_summary": {
         "total_queries": 36,
         "overall": {
@@ -226,9 +226,9 @@
       "embedding_dim": 397,
       "index_bytes": 6680844,
       "metadata_bytes": 2285002,
-      "build_seconds": 0.2318,
-      "query_batch_seconds": 0.0405,
-      "avg_query_seconds": 0.001126,
+      "build_seconds": 0.4866,
+      "query_batch_seconds": 0.0066,
+      "avg_query_seconds": 0.000182,
       "retrieval_summary": {
         "total_queries": 36,
         "overall": {
@@ -331,9 +331,9 @@
       "embedding_dim": 397,
       "index_bytes": 6752304,
       "metadata_bytes": 2310394,
-      "build_seconds": 0.2286,
-      "query_batch_seconds": 0.0404,
-      "avg_query_seconds": 0.001122,
+      "build_seconds": 0.7524,
+      "query_batch_seconds": 0.0066,
+      "avg_query_seconds": 0.000183,
       "retrieval_summary": {
         "total_queries": 36,
         "overall": {

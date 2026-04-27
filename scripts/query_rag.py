@@ -22,6 +22,11 @@ def main() -> None:
     )
     parser.add_argument("--k", type=int, default=5, help="Number of retrieved chunks.")
     parser.add_argument(
+        "--retrieve-only",
+        action="store_true",
+        help="Skip LLM answer generation and show only retrieved chunks.",
+    )
+    parser.add_argument(
         "--example",
         action="store_true",
         help="Run a few built-in example queries instead of a single question.",
@@ -31,6 +36,7 @@ def main() -> None:
     cfg = RAGConfig()
     pipeline = RAGPipeline(cfg)
     pipeline.load_index()
+    print(f"Vector backend: {pipeline.vector_backend}")
     if args.example:
         example_questions = [
             "How do I reset my password?",
@@ -39,7 +45,11 @@ def main() -> None:
             "Tell me about data retention policy.",
         ]
         for q in example_questions:
-            out = pipeline.generate_answer(q, k=args.k)
+            if args.retrieve_only:
+                retrieved = pipeline.retrieve(q, k=args.k)
+                out = {"answer": "[retrieve-only mode]", "retrieved": retrieved}
+            else:
+                out = pipeline.generate_answer(q, k=args.k)
             print(f"\n=== Question ===\n{q}\n")
             print("=== Answer ===\n")
             print(out["answer"])
@@ -55,7 +65,13 @@ def main() -> None:
     if not args.question:
         parser.error("You must provide a question, or use --example.")
 
-    out = pipeline.generate_answer(args.question, k=args.k)
+    if args.retrieve_only:
+        out = {
+            "answer": "[retrieve-only mode]",
+            "retrieved": pipeline.retrieve(args.question, k=args.k),
+        }
+    else:
+        out = pipeline.generate_answer(args.question, k=args.k)
 
     print("\n=== Answer ===\n")
     print(out["answer"])

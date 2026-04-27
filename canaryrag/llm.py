@@ -47,7 +47,10 @@
 #         )
 #         return out[0]["generated_text"]
 
+import os
 from dataclasses import dataclass
+
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 try:
     from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline

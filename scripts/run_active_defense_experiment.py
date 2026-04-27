@@ -69,6 +69,7 @@ def process_query(
             "decision_reasons": defense["reasons"],
             "response_text": defense["response_text"],
             "honey_follow_up": defense["honey_follow_up"],
+            "policy_state": defense.get("policy_state", {}),
         }
     )
     if defense["deployed_honey"] is not None:

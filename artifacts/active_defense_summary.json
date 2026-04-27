@@ -1,6 +1,7 @@
 {
   "total_turns": 18,
   "honey_deployments": 6,
+  "monitored_turns": 0,
   "escalations": 4,
   "benign_false_escalations": 0,
   "by_profile": {
@@ -21,5 +22,5 @@
     }
   },
   "scenario_count": 9,
-  "log_path": "/Users/anaghashyamaprakash/Documents/USC/spring 2026/699/project/semend/Canary_RAG/artifacts/active_defense_logs.jsonl"
+  "log_path": "/Users/HP/Downloads/Canary_RAG/Canary_RAG/artifacts/active_defense_logs.jsonl"
 }

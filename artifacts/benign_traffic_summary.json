@@ -1,0 +1,49 @@
+{
+  "total_queries": 240,
+  "overall": {
+    "canary_hit_rate": 0.0,
+    "top1_canary_rate": 0.0,
+    "false_positive_rate": 0.0
+  },
+  "by_doc_type": {
+    "incident": {
+      "total": 48,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "guide": {
+      "total": 34,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "changelog": {
+      "total": 52,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "policy": {
+      "total": 38,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "faq": {
+      "total": 36,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "design": {
+      "total": 32,
+      "canary_hit_rate": 0.0,
+      "top1_canary_rate": 0.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "sampled_documents": 120,
+  "generated_queries": 240,
+  "log_path": "/Users/HP/Downloads/Canary_RAG/Canary_RAG/artifacts/benign_traffic_logs.jsonl"
+}

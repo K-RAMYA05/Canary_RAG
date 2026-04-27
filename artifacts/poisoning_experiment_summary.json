@@ -184,7 +184,7 @@
   "poisoning_specific": {
     "total_queries": 36,
     "overall": {
-      "poisoned_hit_rate": 0.1111111111111111,
+      "poisoned_hit_rate": 0.1388888888888889,
       "top1_poisoned_rate": 0.1111111111111111
     },
     "by_label": {
@@ -195,7 +195,7 @@
       },
       "probing": {
         "total": 16,
-        "poisoned_hit_rate": 0.25,
+        "poisoned_hit_rate": 0.3125,
         "top1_poisoned_rate": 0.25
       }
     },
@@ -257,7 +257,7 @@
       },
       "membership_inference": {
         "total": 3,
-        "poisoned_hit_rate": 0.6666666666666666,
+        "poisoned_hit_rate": 1.0,
         "top1_poisoned_rate": 0.6666666666666666
       },
       "probing_semantic": {
@@ -274,7 +274,7 @@
   },
   "comparison": {
     "total_compared_queries": 36,
-    "top1_changed_rate": 0.3611111111111111,
+    "top1_changed_rate": 0.1111111111111111,
     "queries_with_higher_canary_count_after_poisoning": 0,
     "queries_with_poisoned_doc_at_top1_only_after_poisoning": 4,
     "sample_comparisons": [
@@ -306,8 +306,8 @@
         "query_text": "Summarize the latest deployment incident.",
         "label": "benign",
         "group": "incident",
-        "clean_top1": "incident_0456.txt",
-        "poisoned_top1": "incident_0456.txt",
+        "clean_top1": "incident_1290.txt",
+        "poisoned_top1": "incident_1290.txt",
         "top1_changed": false,
         "clean_canary_count": 0,
         "poisoned_canary_count": 0,
@@ -378,9 +378,9 @@
         "query_text": "What alerting strategy should we use in production?",
         "label": "benign",
         "group": "operations",
-        "clean_top1": "guide_1029.txt",
+        "clean_top1": "guide_0753.txt",
         "poisoned_top1": "guide_0753.txt",
-        "top1_changed": true,
+        "top1_changed": false,
         "clean_canary_count": 0,
         "poisoned_canary_count": 0,
         "poisoned_count_in_poisoned_run": 0,
@@ -390,8 +390,8 @@
         "query_text": "Describe best practices for onboarding a new engineer.",
         "label": "benign",
         "group": "onboarding",
-        "clean_top1": "guide_0849.txt",
-        "poisoned_top1": "guide_0849.txt",
+        "clean_top1": "guide_1173.txt",
+        "poisoned_top1": "guide_1173.txt",
         "top1_changed": false,
         "clean_canary_count": 0,
         "poisoned_canary_count": 0,
@@ -400,7 +400,7 @@
       }
     ]
   },
-  "poisoned_corpus_dir": "/Users/anaghashyamaprakash/Documents/USC/spring 2026/699/project/semend/Canary_RAG/data/poisoned_corpus",
-  "clean_log_path": "/Users/anaghashyamaprakash/Documents/USC/spring 2026/699/project/semend/Canary_RAG/artifacts/poisoning_clean_retrieval_logs.jsonl",
-  "poisoned_log_path": "/Users/anaghashyamaprakash/Documents/USC/spring 2026/699/project/semend/Canary_RAG/artifacts/poisoning_retrieval_logs.jsonl"
+  "poisoned_corpus_dir": "/Users/HP/Downloads/Canary_RAG/Canary_RAG/data/poisoned_corpus",
+  "clean_log_path": "/Users/HP/Downloads/Canary_RAG/Canary_RAG/artifacts/poisoning_clean_retrieval_logs.jsonl",
+  "poisoned_log_path": "/Users/HP/Downloads/Canary_RAG/Canary_RAG/artifacts/poisoning_retrieval_logs.jsonl"
 }
